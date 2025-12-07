@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="google-site-verification" content="fPMmJP6OvjnGVGjaPL_K27Sxo4g-c7JP-JpkBUSSSVg">
+  <title>2h2j creation</title>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="style2.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div class="all-blessing">
+    <nav>
+      <ul class="sidebar">
+        <li onclick="hidesidebar()"><a href="#"><i class="material-icons">close</i></a></li>
+        <li><a href="lodedd.html">home</a></li>
+        <li><a href="about-us.html">about</a></li>
+        <li><a href="blessing-top-picks.html">top picks</a></li>
+      </ul>
+
+      <ul>
+        <li><a href="#">2h2j</a></li>
+        <li class="hideonmobile"><a href="lodedd.html">home</a></li>
+        <li class="hideonmobile"><a href="about-us.html">about</a></li>
+        <li class="hideonmobile"><a href="blessing-top-picks.html">top picks</a></li>
+        <li class="menubtn" onclick="showsidebar()"><a href="https://wa.me/p/8719677948048588/2349063800952"><i class="material-icons">menu</i></a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <h1>2H2J creation</h1>
+    <p>The best best</p>
+  </section>
+
+  <section id="section1">
+    <section class="head">
+      <h1 class="b8h1">Trending now</h1>
+    </section>
+
+    <!-- product sections -->
+    <div class="product-container">
+      <div class="product-image">
+        <img src="IMG20250729191653.jpg" alt="Product Image">
+      </div>
+      <div class="product-details">
+        <h1 class="product-title">Traveling bag</h1>
+        <p class="product-description">Travel in style with our durable travel buddy!</p>
+        <div class="product-pricing">
+          <span class="current-price">&#8358;25,000</span>
+          <span class="original-price">&#8358;30,000</span>
+          <span class="discount">-33%</span>
+        </div>
+        <div class="product-actions">
+          <button class="buy-now" onclick="window.location.href='buy-now.html'">Buy Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- more product containers (same structure) -->
+
+  </section>
+
+  <section id="section2">
+    <footer>
+      <p>&copy;2025 b8build48 production</p>
+    </footer>
+  </section>
+
+  <!-- Scripts -->
+  <script src="script2.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    const joe = document.getElementById('section1');
+    joe.style.opacity = 0;
+    joe.style.transition = "opacity 6s ease-in-out";
+
+    const ops = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        joe.style.opacity = 1;
+      } else {
+        joe.style.opacity = 0;
+      }
+    });
+
+    ops.observe(joe);
+  </script>
+</body>
+</html>

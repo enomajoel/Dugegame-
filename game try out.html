@@ -77,6 +77,9 @@ button{
   border-radius:100%;
   margin: 10px 13px;
 }
+button:active{
+    background-color:lightgreen;
+}
 body{
   background-color:black;
 }
@@ -166,6 +169,8 @@ const  boost = document.getElementById('boost');
       checkGoal();
   });
 
+
+
   downButton.addEventListener('click', () => {
     y += 10;
     div.style.top = `${y}px`;
@@ -188,7 +193,7 @@ boost.addEventListener('click', () => {
   boost.style.display="none";
   setTimeout(()=>{
     boost.style.display="inline-block";
-  }, 10000);
+  }, 8000);
   });
   
 

@@ -1,0 +1,48 @@
+
+
+<input id="name">
+
+<script defer>
+// Send email using EmailJS
+emailjs.send('your_service_id','your_template_id',
+  {
+    name: document.getElementById('name').value.toLowercase,
+    message: 'Hello from your website!',
+  },
+  
+).then(
+  (response) => {
+    console.log('Email sent successfully!');
+  },
+  (error) => {
+    console.error('Error sending email:', error);
+  }
+);
+
+// Process payment using Stripe
+
+
+document.getElementById('pay-button').addEventListener('click', function() {
+  paystack.newTransaction({
+    key: 'pk_test_5ba9cf4c9436149dc187786f5762b066626ddbc2',
+    email: 'customer@example.com',
+    amount: 10000, // 100.00 NGN
+    currency: 'NGN',
+    ref: 'YOUR_TRANSACTION_REF', // Unique transaction reference
+    callback: function(response) {
+      // Handle payment response
+      if (response.status === 'success') {
+        // Payment was successful
+        console.log(response);
+      } else {
+        // Payment failed
+        console.log(response);
+      }
+    },
+    onClose: function() {
+      // Handle payment modal close
+      console.log('Payment modal closed');
+    }
+  });
+});
+</script>

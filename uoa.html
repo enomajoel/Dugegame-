@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firebase Storage Upload</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+  <h2>Upload File to Firebase Cloud Storage</h2>
+
+  <input type="file" id="fileInput" />
+  <button id="uploadBtn">Upload to Cloud</button>
+
+  <div id="output" style="margin-top: 20px;"></div>
+
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } 
+      from "https://www.gstatic.com/firebasejs/11.0.0/firebase-storage.js";
+
+    // Your Firebase configuration (from your message)
+    const firebaseConfig = {
+      apiKey: "AIzaSyDwhPmGfDXqwrjIKMDyYEmvJ02LpBg_mH0",
+      authDomain: "b8build48-storage.firebaseapp.com",
+      projectId: "b8build48-storage",
+      storageBucket: "b8build48-storage.appspot.com", // ✅ fixed bucket URL
+      messagingSenderId: "1017876546133",
+      appId: "1:1017876546133:web:d019003e2cf43c47cb8adc",
+      measurementId: "G-BLR7FT3CFG"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+
+    // Upload logic
+    const fileInput = document.getElementById("fileInput");
+    const uploadBtn = document.getElementById("uploadBtn");
+    const output = document.getElementById("output");
+
+    uploadBtn.addEventListener("click", async () => {
+      const file = fileInput.files[0];
+      if (!file) return alert("Please select a file first!");
+
+      output.innerHTML = `<p>Uploading <strong>${file.name}</strong>... ⏳</p>`;
+
+      try {
+        // Reference to Cloud Storage path
+        const fileRef = ref(storage, "uploads/" + file.name);
+
+        // Upload the file
+        await uploadBytes(fileRef, file);
+
+        // Get downloadable URL
+        const url = await getDownloadURL(fileRef);
+
+        // Show link
+        output.innerHTML = `
+          <p>✅ <strong>${file.name}</strong> uploaded successfully!</p>
+          <p>📎 <a href="${url}" target="_blank">View / Download file</a></p>
+        `;
+      } catch (error) {
+        console.error(error);
+        output.innerHTML = `<p style="color:red;">❌ Upload failed: ${error.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>
